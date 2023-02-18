@@ -27,15 +27,16 @@ defmodule Backend do
       ),
       if Application.fetch_env!(:backend, :env) == :prod do
         {MyXQL,
-         username: Application.fetch_env!(:myxql, :username),
-         database: Application.fetch_env!(:myxql, :database),
-         hostname: Application.fetch_env!(:myxql, :hostname),
-         password: Application.fetch_env!(:myxql, :password),
+         username: Application.fetch_env!(:backend, :username),
+         database: Application.fetch_env!(:backend, :database),
+         hostname: Application.fetch_env!(:backend, :hostname),
+         password: Application.fetch_env!(:backend, :password),
          ssl: true,
          ssl_opts: [
            verify: :verify_peer,
            cacertfile: CAStore.file_path(),
-           server_name_indication: String.to_charlist(Application.fetch_env!(:myxql, :hostname)),
+           server_name_indication:
+             String.to_charlist(Application.fetch_env!(:backend, :hostname)),
            customize_hostname_check: [
              match_fun: :public_key.pkix_verify_hostname_match_fun(:https)
            ]
@@ -44,9 +45,9 @@ defmodule Backend do
       else
         {
           MyXQL,
-          username: Application.fetch_env!(:myxql, :username),
-          datadatabase: Application.fetch_env!(:myxql, :database),
-          hostname: Application.fetch_env!(:myxql, :hostname),
+          username: Application.fetch_env!(:backend, :username),
+          datadatabase: Application.fetch_env!(:backend, :database),
+          hostname: Application.fetch_env!(:backend, :hostname),
           port: 3306,
           name: :myxql
         }

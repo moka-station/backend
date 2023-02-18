@@ -7,7 +7,7 @@ defmodule Storage do
   end
 
   def putObject(key, binary) do
-    bucket_name = Application.fetch_env!(:s3, :bucket)
+    bucket_name = Application.fetch_env!(:backend, :bucket)
     %{status_code: code} = S3.put_object(bucket_name, key, binary) |> ExAws.request!()
 
     if code == 200 do
@@ -30,7 +30,7 @@ defmodule Storage do
   end
 
   def deleteObject(key) do
-    bucket_name = Application.fetch_env!(:s3, :bucket)
+    bucket_name = Application.fetch_env!(:backend, :bucket)
     %{status_code: code} = S3.delete_object(bucket_name, key) |> ExAws.request!()
 
     if code == 204 do
