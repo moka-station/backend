@@ -93,8 +93,6 @@ defmodule Message do
         []
       end
 
-    messagesIds = DB.generateIDs(length(userTags) + 1)
-
     {:ok, result} =
       MyXQL.transaction(
         :myxql,

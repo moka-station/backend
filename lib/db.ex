@@ -85,7 +85,7 @@ defmodule DB do
           "INSERT INTO Messages (id, userId, messageGroupId, content, type)
           VALUES " <> &1,
           userIds
-          |> Enum.map(fn userId ->
+          |> Enum.flat_map(fn userId ->
             [Nanoid.generate(), userId, groupId, "", type]
           end)
         )).()
