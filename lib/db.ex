@@ -82,7 +82,7 @@ defmodule DB do
     |> Enum.join(", ")
     |> (&MyXQL.query!(
           conn,
-          "INSERT INTO Messages (id, userId, messageGroupId, content, type)
+          "INSERT INTO Message (id, userId, messageGroupId, content, type)
           VALUES " <> &1,
           userIds
           |> Enum.flat_map(fn userId ->
