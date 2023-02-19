@@ -76,7 +76,7 @@ defmodule DB do
     res.rows |> List.flatten()
   end
 
-  def insertTypedMessage(conn, type, groupId, messageIds, userIds) do
+  def insertTypedMessage(conn, type, groupId, userIds) do
     "(?, ?, ?, ?, ?)"
     |> List.duplicate(length(userIds))
     |> Enum.join(", ")
@@ -84,9 +84,9 @@ defmodule DB do
           conn,
           "INSERT INTO Messages (id, userId, messageGroupId, content, type)
           VALUES " <> &1,
-          0..(length(userIds) - 1)
-          |> Enum.map(fn i ->
-            [Enum.at(messageIds, i), Enum.at(userIds, i), groupId, "", type]
+          userIds
+          |> Enum.map(fn userId ->
+            [Nanoid.generate(), userId, groupId, "", type]
           end)
         )).()
   end

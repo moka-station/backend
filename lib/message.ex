@@ -93,7 +93,7 @@ defmodule Message do
         []
       end
 
-    messagesIds = DB.generateIDs(length(userTags))
+    messagesIds = DB.generateIDs(length(userTags) + 1)
 
     {:ok, result} =
       MyXQL.transaction(
@@ -115,7 +115,7 @@ defmodule Message do
                 [state.userId, groupId] ++ Enum.flat_map(userIds, fn x -> [x, groupId] end)
               )).()
 
-          DB.insertTypedMessage(conn, 1, groupId, messagesIds, [state.userId | userIds])
+          DB.insertTypedMessage(conn, 1, groupId, [state.userId | userIds])
 
           MyXQL.query!(
             conn,
