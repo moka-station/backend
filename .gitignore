@@ -28,3 +28,5 @@ backend-*.tar
 /config/config.exs.priv
 
 /.elixir_ls
+
+/not_used

@@ -10,13 +10,6 @@ defmodule Backend do
           port: 4000
         ]
       ),
-      Plug.Cowboy.child_spec(
-        scheme: :http,
-        plug: Backend.ServerRouter,
-        options: [
-          port: 6969
-        ]
-      ),
       Registry.child_spec(
         keys: :duplicate,
         name: Registry.MessageGroup
