@@ -42,8 +42,6 @@ defmodule Backend.SocketHandler do
         [userId]
       ).rows
       |> Enum.each(fn [x] ->
-        IO.puts("Registered " <> x)
-
         {:ok, _} =
           Registry.MessageGroup
           |> Registry.register(x, %{userId: userId})

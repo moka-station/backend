@@ -47,8 +47,6 @@ defmodule Backend do
       end
     ]
 
-    Storage.getBuckets() |> IO.inspect()
-
     opts = [strategy: :one_for_one, name: Backend.Application]
     Supervisor.start_link(children, opts)
   end

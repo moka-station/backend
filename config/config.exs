@@ -5,6 +5,10 @@ config :ex_aws,
   secret_access_key: System.get_env("AWS_SECRET_ACCESS_KEY"),
   region: System.get_env("AWS_REGION")
 
+config :ex_aws, :s3,
+  scheme: "https://",
+  host: System.get_env("AWS_HOST")
+
 config :backend,
   username: System.get_env("USERNAME"),
   database: System.get_env("DATABASE"),

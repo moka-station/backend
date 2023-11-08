@@ -289,7 +289,7 @@ defmodule Message do
         res =
           MyXQL.query!(
             conn,
-            "UPDATE station0.MessageGroup
+            "UPDATE MessageGroup
             SET title = IFNULL(?, title), image = IFNULL(?, image)
             WHERE id = ? AND EXISTS (SELECT * FROM User_MessageGroup WHERE userId = ? AND messageGroupId = ?)",
             [

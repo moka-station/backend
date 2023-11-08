@@ -21,7 +21,7 @@ defmodule Storage do
     path = "messageGroup/" <> groupId <> ".png"
     binary = Base.decode64!(image)
 
-    if IO.iodata_length(binary) > 1_000_000 do
+    if IO.iodata_length(binary) > 5_000_000 do
       raise("over size")
     end
 
