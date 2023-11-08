@@ -19,7 +19,7 @@ defmodule Backend.SocketHandler do
         |> then(
           &MyXQL.query!(
             :myxql,
-            "SELECT user_id FROM Session WHERE id = (?)",
+            "SELECT user_id FROM session WHERE id = (?)",
             [&1]
           )
         )

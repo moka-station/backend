@@ -20,7 +20,7 @@ defmodule Message do
             conn,
             "SELECT m.id, u.username, u.usertag, u.image, m.content, m.created, m.type
             FROM Message m
-            JOIN User u ON u.id = m.userId
+            JOIN user u ON u.id = m.userId
             WHERE m.id = ?",
             [id]
           )
@@ -83,7 +83,7 @@ defmodule Message do
           |> Enum.join(", ")
           |> (&MyXQL.query!(
                 :myxql,
-                "SELECT id FROM User WHERE usertag IN (" <> &1 <> ")",
+                "SELECT id FROM user WHERE usertag IN (" <> &1 <> ")",
                 userTags
               )).()
 
@@ -188,7 +188,7 @@ defmodule Message do
       |> Enum.join(", ")
       |> (&MyXQL.query!(
             :myxql,
-            "SELECT id FROM User WHERE usertag IN (" <> &1 <> ")",
+            "SELECT id FROM user WHERE usertag IN (" <> &1 <> ")",
             userTags
           )).()
 

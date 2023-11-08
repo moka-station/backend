@@ -101,7 +101,7 @@ defmodule DB do
             "
           SELECT m.id, u.username, u.usertag, u.image, m.content, m.created, m.type
           FROM Message m
-          JOIN User u ON u.id = m.userId
+          JOIN user u ON u.id = m.userId
           WHERE m.id IN (" <> &1 <> ")",
             messageIds
           )).()
